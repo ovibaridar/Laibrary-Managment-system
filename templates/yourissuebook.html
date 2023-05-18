@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="utf-8">
+   <meta content="width=device-width, initial-scale=1.0" name="viewport">
+   <title>Your issue books</title>
+   <meta name="robots" content="noindex, nofollow">
+   <meta content="" name="description">
+   <meta content="" name="keywords">
+
+   <link href="static/book-solid.svg" rel="icon">
+   <link href="static/book-solid.svg" rel="apple-touch-icon">
+   <link href="https://fonts.gstatic.com" rel="preconnect">
+   <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+      rel="stylesheet">
+
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
+
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/fontawesome.min.css"
+      integrity="sha512-RvQxwf+3zJuNwl4e0sZjQeX7kUa3o82bDETpgVCH2RiwYSZVDdFJ7N/woNigN/ldyOOoKw8584jM4plQdt8bhA=="
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js"
+      integrity="sha512-naukR7I+Nk6gp7p5TMA4ycgfxaZBJ7MO5iC3Fp6ySQyKFHOGfpkSZkYVWV5R7u7cfAicxanwYQ5D1e17EfJcMA=="
+      crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" rel="stylesheet">
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css" integrity="sha384-wESLQ85D6gbsF459vf1CiZ2+rr+CsxRY0RpiF1tLlQpDnAgg6rwdsUF1+Ics2bni" crossorigin="anonymous">
+
+   <link href="static/bootstrap.min.css" rel="stylesheet">
+   <link href="static/boxicons.min.css" rel="stylesheet">
+   <link href="static/quill.snow.css" rel="stylesheet">
+   <link href="static/quill.bubble.css" rel="stylesheet">
+   <link href="static/remixicon.css" rel="stylesheet">
+   <link href="static/simple-datatables.css" rel="stylesheet">
+   <link href="static/style.css" rel="stylesheet">
+</head>
+
+<body>
+   <header id="header" class="header fixed-top d-flex align-items-center">
+
+      <div class="d-flex align-items-center justify-content-between"> <a href="{{ url_for('student_index')}}"
+            class="logo d-flex align-items-center"><span class="d-none d-lg-block">Student</span> </a> <i
+            class="bi bi-list toggle-sidebar-btn"></i></div>
+
+      <div class="search-bar">
+         <form class="search-form d-flex align-items-center" method="POST" action="#"> <input type="text" name="query"
+               placeholder="Search" title="Enter search keyword"> <button type="submit" title="Search"><i
+                  class="bi bi-search"></i></button></form>
+      </div>
+
+      <nav class="header-nav ms-auto">
+         <ul class="d-flex align-items-center">
+            <li class="nav-item d-block d-lg-none"> <a class="nav-link nav-icon search-bar-toggle " href="#"> <i
+                     class="bi bi-search"></i> </a></li>
+
+            <li class="nav-item dropdown pe-3">
+               <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown"> <div class="avatar">
+                      <img
+                     src="static/{{photo}}" alt="Profile" >
+                  </div> <span
+                     class="d-none d-md-block dropdown-toggle ps-2">{{name}}</span> </a>
+               <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                  <li class="dropdown-header">
+                     <h6>{{name}}</h6>
+                     <span>Student</span>
+                  </li>
+                  <li>
+                     <hr class="dropdown-divider">
+                  </li>
+                  <li> <a class="dropdown-item d-flex align-items-center" href="{{ url_for('student_users_profile')}}"> <i
+                           class="bi bi-person"></i> <span>My Profile</span> </a></li>
+                  <li>
+                     <hr class="dropdown-divider">
+                  </li>
+
+                  <li> <a class="dropdown-item d-flex align-items-center" href="/logout_lib"> <i
+                           class="bi bi-box-arrow-right"></i> <span>Sign Out</span> </a></li>
+                  <li>
+                     <hr class="dropdown-divider">
+                  </li>
+               </ul>
+            </li>
+         </ul>
+      </nav>
+   </header>
+   <aside id="sidebar" class="sidebar">
+      <ul class="sidebar-nav" id="sidebar-nav">
+         <li class="nav-item"> <a class="nav-link " href="{{ url_for('student_index')}}"> <i class="bi bi-grid"></i> <span>Dashboard</span>
+            </a></li>
+         <li class="nav-item"> <a class="nav-link collapsed" href="{{ url_for('student_books')}}">
+               <span><i class="bi bi-card-list"></i></span>
+               <span>Books</span>
+            </a>
+         </li>
+          <li class="nav-item"> <a class="nav-link collapsed" href="{{ url_for('Your_Issue_book')}}"> <i class="bi bi-person"></i>
+               <span>Your Issue Books</span> </a></li>
+         <li class="nav-item"> <a class="nav-link collapsed" href="{{ url_for('Notification')}}"> <i class="bi bi-person"></i>
+               <span>Notification</span> </a></li>
+         <li class="nav-item"> <a class="nav-link collapsed" href="{{ url_for('student_users_profile')}}"> <i class="bi bi-person"></i>
+               <span>Profile</span> </a></li>
+      </ul>
+   </aside>
+   <main id="main" class="main">
+      <div class="pagetitle">
+         <h1>Books</h1>
+         <nav>
+            <ol class="breadcrumb">
+               <li class="breadcrumb-item"><a href="{{ url_for('student_index')}}">Home</a></li>
+               <li class="breadcrumb-item active">Books</li>
+            </ol>
+         </nav>
+      </div>
+      <section class="section dashboard">
+         <div class="row">
+            <div class="col-12">
+               <div class="card recent-sales overflow-auto">
+                  <div class="card-body">
+                     <h5 class="card-title">Issu Books List</h5>
+
+                     <table id="example" class="table table-striped" style="width:100%">
+                        <thead>
+                           <tr>
+                              <th scope="col">Issue ID</th>
+                              <th scope="col">Book Name</th>
+                              <th scope="col">Book ID</th>
+                              <th scope="col">Book Edition</th>
+                              <th scope="col">Issu date</th>
+                              <th scope="col">Issu last date</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                        {%for issue_information in issue_informations%}
+                           <tr>
+                              <td>{{issue_information[0]}}</td>
+                              <td>{{issue_information[4]}}</td>
+                              <td>{{issue_information[5]}}</td>
+                              <td>{{issue_information[6]}}</td>
+                              <td>{{issue_information[7]}}</td>
+                              <td>{{issue_information[8]}}</td>
+                           </tr>
+                        {%endfor%}
+                        </tbody>
+                     </table>
+
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+   </main>
+   <footer id="footer" class="footer">
+      <div class="copyright"> &copy; Copyright <strong><span>LMS</span></strong>. All Rights Reserved</div>
+            <div class="credits">Design by <a class="allink" href="https://www.facebook.com/nahidinf" target="_blank">Nahid Hasan</a> & <a class="allink" href="https://www.facebook.com/error.non/" target="_blank">Al Arman Ovi</a></div>
+   </footer>
+   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+         class="bi bi-arrow-up-short"></i></a>
+   <script src="static/js/apexcharts.min.js"></script>
+   <script src="static/js/bootstrap.bundle.min.js"></script>
+   <script src="static/js/chart.min.js"></script>
+   <script src="static/js/echarts.min.js"></script>
+   <script src="static/js/quill.min.js"></script>
+   <script src="static/js/simple-datatables.js"></script>
+   <script src="static/js/tinymce.min.js"></script>
+   <script src="static/js/validate.js"></script>
+   <script src="static/js/main.js"></script>
+
+   <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+   <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+   <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
+   <script>
+      $(document).ready(function () {
+         $('#example').DataTable();
+      });
+   </script>
+
+</body>
+
+</html>

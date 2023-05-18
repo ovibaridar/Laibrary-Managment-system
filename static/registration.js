@@ -1,0 +1,23 @@
+$(document).ready(function(){
+    $("#pass-eye").click(function(){
+        $(this).css("display","none");
+        $("#pass-sl-eye").css("display","block");
+        $("#pass").attr("type",("password"));
+    });
+    $("#pass-sl-eye").click(function(){
+        $(this).css("display","none");
+        $("#pass-eye").css("display","block");
+        $("#pass").attr("type",("text"));
+    });
+
+    $("#cpass-eye").click(function(){
+        $(this).css("display","none");
+        $("#cpass-sl-eye").css("display","block");
+        $("#cpass").attr("type",("password"));
+    });
+    $("#cpass-sl-eye").click(function(){
+        $(this).css("display","none");
+        $("#cpass-eye").css("display","block");
+        $("#cpass").attr("type",("text"));
+    });
+});

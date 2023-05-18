@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="utf-8">
+   <meta content="width=device-width, initial-scale=1.0" name="viewport">
+   <title>Add Category</title>
+   <meta name="robots" content="noindex, nofollow">
+   <meta content="" name="description">
+   <meta content="" name="keywords">
+   <link href="static/book-solid.svg" rel="icon">
+   <link href="static/book-solid.svg" rel="apple-touch-icon">
+   <link href="https://fonts.gstatic.com" rel="preconnect">
+   <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+      rel="stylesheet">
+
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" rel="stylesheet">
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css" integrity="sha384-wESLQ85D6gbsF459vf1CiZ2+rr+CsxRY0RpiF1tLlQpDnAgg6rwdsUF1+Ics2bni" crossorigin="anonymous">
+
+   <link href="static/bootstrap.min.css" rel="stylesheet">
+   <link href="static/boxicons.min.css" rel="stylesheet">
+   <link href="static/quill.snow.css" rel="stylesheet">
+   <link href="static/quill.bubble.css" rel="stylesheet">
+   <link href="static/remixicon.css" rel="stylesheet">
+   <link href="static/simple-datatables.css" rel="stylesheet">
+   <link href="static/style.css" rel="stylesheet">
+</head>
+
+<body>
+  {% include "header.html" %}
+   <aside id="sidebar" class="sidebar">
+      <ul class="sidebar-nav" id="sidebar-nav">
+         <li class="nav-item"> <a class="nav-link " href="{{ url_for('index_l')}}"> <i class="bi bi-grid"></i> <span>Dashboard</span>
+            </a></li>
+
+         <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#"> <i
+                  class="bi bi-menu-button-wide"></i><span> Categories </span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+               <li> <a href="{{ url_for('add_cata')}}"> <i class="bi bi-circle"></i><span> Add Category</span> </a></li>
+               <li> <a href="{{ url_for('mange_cata')}}"> <i class="bi bi-circle"></i><span>Manage Category</span> </a></li>
+            </ul>
+         </li>
+
+         <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#"> <i
+                  class="bi bi-layout-text-window-reverse"></i><span>Books</span><i
+                  class="bi bi-chevron-down ms-auto"></i> </a>
+            <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+               <li> <a href="{{ url_for('add_book')}}"> <i class="bi bi-circle"></i><span>Add Book</span> </a></li>
+               <li> <a href="{{ url_for('mange_book')}}"> <i class="bi bi-circle"></i><span>Manage Books</span> </a></li>
+            </ul>
+         </li>
+
+ <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+               <i class="bi bi-journal-text"></i><span>issue</span>
+               <i class="bi bi-chevron-down ms-auto"></i> </a>
+            <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+               <li> <a href="{{ url_for('addiss')}}"> <i class="bi bi-circle"></i><span>Add issue Book</span> </a></li>
+               <li> <a href="{{ url_for('iss_book')}}"> <i class="bi bi-circle"></i><span>Manage issue Books</span> </a></li>
+                <li> <a href="{{ url_for('Request')}}"> <i class="bi bi-circle"></i><span>Request</span> </a></li>
+               <li> <a href="{{ url_for('warning')}}"> <i class="bi bi-circle"></i><span>warning</span> </a></li>
+                <li> <a href="{{ url_for('received')}}"> <i class="bi bi-circle"></i><span>Received Book</span> </a></li>
+                <li> <a href="{{ url_for('history')}}"> <i class="bi bi-circle"></i><span>History of issue books</span> </a></li>
+            </ul>
+         </li>
+
+         <li class="nav-heading">Pages</li>
+
+         <li class="nav-item"> <a class="nav-link collapsed" href="{{ url_for('user_profile')}}"> <i class="bi bi-person"></i>
+               <span>Profile</span>
+            </a></li>
+         <li class="nav-item"> <a class="nav-link collapsed" href="{{ url_for('signup')}}"> <i class="bi bi-card-list"></i> <span>Reg
+                  Students</span> </a></li>
+      </ul>
+   </aside>
+   <main id="main" class="main">
+      <div class="pagetitle">
+         <h1>Add Categories</h1>
+         <nav>
+            <ol class="breadcrumb">
+               <li class="breadcrumb-item"><a href="{{ url_for('index_l')}}">Home</a></li>
+               <li class="breadcrumb-item active"> Categories</li>
+               <li class="breadcrumb-item active"> Add Category</li>
+            </ol>
+         </nav>
+      </div>
+      <section class="section dashboard">
+         <div class="row">
+            <div class="col-lg-12">
+               <div class="row">
+                  <div class="col-12">
+                     <div class="card recent-sales overflow-auto">
+                        <div class="card-body">
+
+                           <div class="row mt-5">
+                              <div class="col-2"></div>
+                              <div class="col-8">
+
+
+                                 <div class="text-center bg-light mb-4">
+                                    <h5 class="card-title">Add Catagory</h5>
+                                 </div>
+
+                                 <form action="http://127.0.0.1:8000/addcata" method="POST">
+
+                                    <div class="mb-3">
+                                       <label class="form-label ">Category Name</label>
+                                       <input type="text" class="form-control" name="cat" required>
+                                       {%if m %} <h6 style="color:red;">{{m}}</h6> {% endif %}
+                                    </div>
+
+                                    <label class="form-label ">Status</label>
+                                    <div class="form-check">
+                                       <input class="form-check-input" type="radio" value="Active" name="flex" checked>
+                                       <label class="form-check-label" >
+                                          Active
+                                       </label>
+                                    </div>
+                                    <div class="form-check">
+                                       <input class="form-check-input" value="Inactive"  type="radio" name="flex">
+                                       <label class="form-check-label">
+                                          Inactive
+                                       </label>
+                                    </div>
+
+                                    <div class="text-center mt-3 mb-5">
+                                       <button  class="btn btn-outline-primary">Submit</button>
+                                    </div>
+                                 </form>
+                              </div>
+                              <div class="col-2"></div>
+                           </div>
+
+                        </div> <!-- card-body end -->
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+   </main>
+   <footer id="footer" class="footer">
+      <div class="copyright"> &copy; Copyright <strong><span>LMS</span></strong>. All Rights Reserved</div>
+      <div class="credits">Design by <a class="allink" href="https://www.facebook.com/nahidinf" target="_blank">Nahid Hasan</a> & <a class="allink" href="https://www.facebook.com/error.non/" target="_blank">Al Arman Ovi</a></div>
+   </footer>
+   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+         class="bi bi-arrow-up-short"></i></a>
+   <script src="static/js/apexcharts.min.js"></script>
+   <script src="static/js/bootstrap.bundle.min.js"></script>
+   <script src="static/js/chart.min.js"></script>
+   <script src="static/js/echarts.min.js"></script>
+   <script src="static/js/quill.min.js"></script>
+   <script src="static/js/simple-datatables.js"></script>
+   <script src="static/js/tinymce.min.js"></script>
+   <script src="static/js/validate.js"></script>
+   <script src="static/js/main.js"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css2?family=Iceland&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+*{
+    font-family: 'Roboto', sans-serif;
+}
+body{
+    
+    margin: 0; 
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+}
+img{
+    position: fixed;
+}
+.imgone{
+    height: 450px;
+    width: 350px;
+    right: -20px;
+    bottom: 40px;
+    transform: rotate(10deg);
+}
+.imgtwo{
+    height: 400px;
+    width: 400px;
+    right: 350px;
+    bottom: 100px;
+    transform: rotate(-10deg);
+}
+.imgcircle{
+    height: 800px;
+    width: 800px;
+    right: -150px;
+    bottom: -200px;
+}
+.head{
+    display: flex;
+    justify-content: space-between;
+    width: 30%;
+    height: 50px;
+    align-items: center;
+    margin: 0 auto;
+    background-color: rgb(141, 158, 255);
+    position: absolute;
+    position: fixed;
+    z-index: 1;
+}
+.controlbtn{
+    width: 55%;
+    height: 40px;
+    padding-left: 10px;
+    font-size: 1rem;
+    margin: 0 auto;
+    padding-right: 6%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+#stubtn, #libbtn{
+    height: 100%;
+    width: 48%;
+    background-color: white;
+    border: none;
+    cursor: pointer;
+}
+#stubtn{
+    background-color: rgb(141, 158, 255);
+    color: white;
+}
+.logform{
+    width: 90%;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid black;
+    margin: 0 auto;
+    margin-top: 14%;
+    z-index: -1;
+}
+.student{
+    width: 100%;
+}
+.libarian{
+    display: none;
+}
+.leftSide{
+    width: 30%;
+    height: 100vh;
+    background-color: white; 
+    
+}
+.rightSide{
+    background: url(background.jpg) no-repeat ;
+    background-size: cover;
+    background-position: right;
+    width: 70%; 
+    height: 1081px;
+}
+.overlay{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(141, 158, 255, 0.7);
+    position: relative;
+}
+form{
+    width: 90%;
+    margin: 0 auto;
+    padding: 20px;
+}
+.homelink{
+    margin: 0;
+    margin-left: 10px;
+    font-size: 20px;
+    text-align: center;
+    color: white;   
+}
+.alink{
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+    margin-right: 40px;
+}
+label{
+    font-size: 16px;
+}
+.part{
+    padding: 10px;
+    width: 90%;
+    position: relative;
+}
+input{
+    width: 100%;
+    height: 35px;
+    padding-left: 10px;
+    font-size: 1rem;
+    margin-top: 8px;
+    position: relative;
+}
+#photo{
+    font-size: 14px;
+}
+.signupbtn{
+    height: 35px;
+    width: 70px;
+    border-radius: 10px;
+    border: none;
+    background: rgb(141, 158, 255);
+    text-align: center;
+    color: white;
+}
+.signup:hover{
+    background: rgb(91, 115, 250);
+}
+.btn{
+    width: 90%;
+    text-align: center;
+    margin-top: 20px;
+}
+span{
+    position: absolute;
+    top: 46px;
+    right: 0;
+}
+#pass-eye, #pass-sl-eye, #cpass-eye, #cpass-sl-eye, #pass-eyer, #pass-sl-eyer, #cpass-eyer, #cpass-sl-eyer{
+    cursor: pointer;
+}
+#pass-eye, #cpass-eye, #pass-eyer, #cpass-eyer{
+    display: none;
+}
+

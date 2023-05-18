@@ -1,0 +1,50 @@
+ <header id="header" class="header fixed-top d-flex align-items-center">
+
+      <div class="d-flex align-items-center justify-content-between"> <a href="{{ url_for('index_l')}}"
+            class="logo d-flex align-items-center"><span class="d-none d-lg-block">Admin</span> </a> <i
+            class="bi bi-list toggle-sidebar-btn"></i></div>
+
+      <div class="search-bar">
+         <form class="search-form d-flex align-items-center" method="POST" action=""> <input type="text" name="query"
+               placeholder="Search" title="Enter search keyword"> <button type="submit" title="Search"><i
+                  class="bi bi-search"></i></button></form>
+      </div>
+
+      <nav class="header-nav ms-auto">
+         <ul class="d-flex align-items-center">
+            <li class="nav-item dropdown pe-3">
+
+               <form action="http://127.0.0.1:8000/index_l" method="POST">
+               <a class="nav-link nav-profile d-flex align-items-center pe-0" href="{{ url_for('user_profile')}}" data-bs-toggle="dropdown" >
+                  <div class="avatar">
+                      <img
+                     src="{{ url_for('static',filename=filename)}}" alt="Profile" >
+                  </div>
+                 <span
+                       class="d-none d-md-block dropdown-toggle ps-2" >{{name}} {{name2}}</span> </a>
+               <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+
+                  <li class="dropdown-header">
+
+                     <h6>{{name}} {{name2}}</h6>
+                     <span>Librarian</span>
+                  </li>
+                  <li>
+                     <hr class="dropdown-divider">
+                  </li>
+                  <li> <a class="dropdown-item d-flex align-items-center" href="{{ url_for('user_profile')}}"> <i
+                           class="bi bi-person"></i> <span>My Profile</span> </a></li>
+                  <li>
+                     <hr class="dropdown-divider">
+                  </li>
+                  <li> <a class="dropdown-item d-flex align-items-center" href="{{ url_for('logout')}}"> <i
+                           class="bi bi-box-arrow-right"></i> <span>Sign Out</span> </a></li>
+                  <li>
+                     <hr class="dropdown-divider">
+                  </li>
+               </ul>
+               </form>
+            </li>
+         </ul>
+      </nav>
+   </header>

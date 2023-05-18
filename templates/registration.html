@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="responsive.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/fontawesome.min.css"
+        integrity="sha512-RvQxwf+3zJuNwl4e0sZjQeX7kUa3o82bDETpgVCH2RiwYSZVDdFJ7N/woNigN/ldyOOoKw8584jM4plQdt8bhA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js"
+        integrity="sha512-naukR7I+Nk6gp7p5TMA4ycgfxaZBJ7MO5iC3Fp6ySQyKFHOGfpkSZkYVWV5R7u7cfAicxanwYQ5D1e17EfJcMA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static',filename='login.css')}}" >
+    <link rel="stylesheet" href="{{ url_for('static',filename='responsive.css')}}" >
+
+</head>
+
+<body>
+    <div class="leftSide">
+        <div class="head">
+            {% if valu == 1  %}
+            <a class="homelink" href="#" style="text-decoration: none;">Libary Management System</a>
+            {% elif valu2 == 1%}
+            <a class="homelink" href="#" style="text-decoration: none;">Libary Management System</a>
+            {% else %}
+               <a class="homelink" href="{{ url_for('home')}}" style="text-decoration: none;">Libary Management System</a>
+               <a class="alink" href="{{ url_for('login')}}">Login</a>
+            {%endif%}
+
+
+        </div>
+        <div class="logform">
+            <div class="controlbtn">
+                <button id="stubtn">For Student</button>
+                <button id="libbtn">For Librarian</button>
+            </div>
+            <div class="student" id="student">
+                <h5 style="text-align: center; 
+                margin: 0; padding: 0; padding-top: 10px">For Student</h5>
+                <form action="http://127.0.0.1:8000/signupdo" method="post" enctype="multipart/form-data">
+                    <div class="part">
+                        <label >Your first name</label><br>
+                        <input type="text" placeholder="Enter your first name" required name="sname">
+                    </div>
+                    <div class="part">
+                        <label>Your last name</label><br>
+                        <input type="text" placeholder="Enter your last name" required name="slname">
+                    </div>
+                    <div class="part">
+                        <label >Your email address</label><br>
+                        <input type="email" placeholder="Enter your email address" required name="semail"><br>
+                        {% if error %}
+                            <h6 style="color: red">{{error}}</h6>
+                        {% endif %}
+                    </div>
+                    <div class="part">
+                        <label >Your student ID</label><br>
+                        <input type="number" placeholder="Enter your student id" required name="sid">
+                        {% if studenterror %}
+                            <h6 style="color: red">{{studenterror}}</h6>
+                        {% endif %}
+                    </div>
+                    <div class="part">
+                        <label >Your  Batch</label><br>
+                        <input type="number" placeholder="Enter your Batch" required name="sbt">
+                    </div>
+                    <div class="part">
+                        <label >Your Department</label><br>
+                        <input type="text" placeholder="Enter your Department" required name="sdp">
+                    </div>
+                    <div class="part">
+                        <label >Your phone number</label><br>
+                        <input type="tel" placeholder="Enter your phone number" required name="sphn">
+                    </div>
+                    <div class="part">
+                        <label >Choose a password</label><br>
+                        <input id="pass" type="password" placeholder="Password" required name="spass">
+                        {% if errorr %}
+                            <h6 style="color: red">{{errorr}}</h6>
+                        {% endif %}
+                        <span><i id="pass-eye" class="fa-regular fa-eye"></i></span>
+                        <span><i id="pass-sl-eye" class="fa-regular fa-eye-slash"></i></span>
+                    </div>
+                    <div class="part">
+                        <label >Confirm password</label><br>
+                        <div class="pass">
+                            <input id="cpass" type="password" placeholder="Confirm password" required name="scpass">
+                            <span><i id="cpass-eye" class="fa-regular fa-eye"></i></span>
+                            <span><i id="cpass-sl-eye" class="fa-regular fa-eye-slash"></i></span>
+                        </div>
+                    </div>
+                    <div class="part">
+                        <label >Your birthday</label><br>
+                        <input type="date" required name="sbd">
+                    </div>
+                    <div class="part">
+                        <label >Choose a photo</label><br>
+                        <input  type="file" required name="sphoto">
+                        {% if er %}
+                            <h4>{{er}}</h4>
+                        {% endif %}
+                    </div>
+                    <div class="btn">
+                        <button class="signupbtn">SignUp</button>
+                    </div>
+                </form>
+            </div>
+            <div class="libarian" id="Libarian">
+                <h5 style="text-align: center; 
+                        margin: 0; padding: 0; padding-top: 10px">For Librarian</h5>
+                <form action="http://127.0.0.1:8000/singnupl" method="post" enctype="multipart/form-data">
+                    <div class="part">
+                        <label >Your first name</label><br>
+                        <input type="text" placeholder="Enter your first name" required name="lname">
+                    </div>
+                    <div class="part">
+                        <label >Your last name</label><br>
+                        <input type="text" placeholder="Enter your last name" required name="llname">
+                    </div>
+                    <div class="part">
+                        <label >Your email address</label><br>
+                        <input type="email" placeholder="Enter your email address" required name="lemail">
+                        {% if error %}
+                            <h6 style="color: red">{{error}}</h6>
+                        {% endif %}
+                    </div>
+                    <div class="part">
+                        <label >Your phone number</label><br>
+                        <input type="tel" placeholder="Enter your phone number" required name="lphn">
+                    </div>
+                    <div class="part">
+                        <label >Choose a password</label><br>
+                        <input id="passr" type="password" placeholder="Password" required name="lpass">
+                        <span><i id="pass-eyer" class="fa-regular fa-eye"></i></span>
+                        <span><i id="pass-sl-eyer" class="fa-regular fa-eye-slash"></i></span>
+                    </div>
+                    <div class="part">
+                        <label >Confirm password</label><br>
+                        <div class="pass">
+                            <input id="cpassr" type="password" placeholder="Confirm password" required name="lcpass">
+                            <span><i id="cpass-eyer" class="fa-regular fa-eye"></i></span>
+                            <span><i id="cpass-sl-eyer" class="fa-regular fa-eye-slash"></i></span>
+                        </div>
+                    </div>
+                    <div class="part">
+                        <label >Your birthday</label><br>
+                        <input type="date" required name="lbd">
+                    </div>
+                    <div class="part">
+                        <label >Choose a photo</label><br>
+                        <input  type="file" required name="lphoto">
+                        {% if err %}
+                            <h4>{{err}}</h4>
+                        {% endif %}
+                    </div>
+                    <div class="btn">
+                        <button class="signupbtn">SignUp</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="rightSide">
+        <div class="overlay">
+
+        </div>
+    </div>
+    </div>
+    <script type="text/javascript" src="mainjs/main.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#stubtn").click(function () {
+                $("#student").show();
+                $("#Libarian").hide();
+                $(this).css("background-color", "rgb(141, 158, 255)");
+                $(this).css("color", "white");
+                $("#libbtn").css("color", "black");
+                $("#libbtn").css("background-color", "white");
+            });
+            $("#libbtn").click(function () {
+                $("#Libarian").show();
+                $("#student").hide();
+                $(this).css("background-color", "rgb(141, 158, 255)");
+                $(this).css("color", "white");
+                $("#stubtn").css("color", "black");
+                $("#stubtn").css("background-color", "white");
+            });
+            //password show hide        
+            $("#pass-eye").click(function () {
+                $(this).css("display", "none");
+                $("#pass-sl-eye").css("display", "block");
+                $("#pass").attr("type", ("password"));
+            });
+            $("#pass-sl-eye").click(function () {
+                $(this).css("display", "none");
+                $("#pass-eye").css("display", "block");
+                $("#pass").attr("type", ("text"));
+            });
+
+            $("#cpass-eye").click(function () {
+                $(this).css("display", "none");
+                $("#cpass-sl-eye").css("display", "block");
+                $("#cpass").attr("type", ("password"));
+            });
+            $("#cpass-sl-eye").click(function () {
+                $(this).css("display", "none");
+                $("#cpass-eye").css("display", "block");
+                $("#cpass").attr("type", ("text"));
+            });
+             //confirm password show hide        
+             $("#pass-eyer").click(function () {
+                $(this).css("display", "none");
+                $("#pass-sl-eyer").css("display", "block");
+                $("#passr").attr("type", ("password"));
+            });
+            $("#pass-sl-eyer").click(function () {
+                $(this).css("display", "none");
+                $("#pass-eyer").css("display", "block");
+                $("#passr").attr("type", ("text"));
+            });
+
+            $("#cpass-eyer").click(function () {
+                $(this).css("display", "none");
+                $("#cpass-sl-eyer").css("display", "block");
+                $("#cpassr").attr("type", ("password"));
+            });
+            $("#cpass-sl-eyer").click(function () {
+                $(this).css("display", "none");
+                $("#cpass-eyer").css("display", "block");
+                $("#cpassr").attr("type", ("text"));
+            });
+        });
+    </script>
+</body>
+
+</html>

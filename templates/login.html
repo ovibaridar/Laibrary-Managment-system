@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="responsive.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/fontawesome.min.css"
+        integrity="sha512-RvQxwf+3zJuNwl4e0sZjQeX7kUa3o82bDETpgVCH2RiwYSZVDdFJ7N/woNigN/ldyOOoKw8584jM4plQdt8bhA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js"
+        integrity="sha512-naukR7I+Nk6gp7p5TMA4ycgfxaZBJ7MO5iC3Fp6ySQyKFHOGfpkSZkYVWV5R7u7cfAicxanwYQ5D1e17EfJcMA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static',filename='login.css')}}" >
+    <link rel="stylesheet" href="{{ url_for('static',filename='responsive.css')}}" >
+
+</head>
+
+<body style="overflow: hidden;">
+    <div class="leftSide">
+        <div class="head">
+            <a class="homelink" href="{{ url_for('home')}}" style="text-decoration: none;">Library Management System</a>
+            <a class="alink" href="{{ url_for('signup')}}">SignUp</a>
+        </div>
+        <div class="logform">
+            <div class="controlbtn">
+                <button id="stubtn">For Student</button>
+                <button id="libbtn">For Librarian</button>
+            </div>
+            <div class="student" id="student">
+                <h5 style="text-align: center; 
+                margin: 0; padding: 0; padding-top: 10px">For Student</h5>
+                <form action="http://127.0.0.1:8000/logindo" method="post">
+                    <div class="part">
+                        <label for="">Your email address</label><br>
+                        <input type="email" placeholder="Enter your email address" required name="email">
+                    </div>
+                    <div class="part">
+                        <label for="">Password</label><br>
+                        <input id="pass" type="password" placeholder="Password" required name="stpass">
+                        <span><i id="pass-eye" class="fa-regular fa-eye"></i></span>
+                        <span><i id="pass-sl-eye" class="fa-regular fa-eye-slash"></i></span>
+                        {% if error %}
+                            <h6 style="color:red">{{error}}</h6>
+                        {% endif %}
+                    </div>
+
+                    <div class="btn">
+                        <a href="/logindo" ><button class="signupbtn" >Login</button></a>
+                    </div>
+                </form>
+            </div>
+            <div class="libarian" id="Libarian">
+                <h5 style="text-align: center; 
+                        margin: 0; padding: 0; padding-top: 10px">For Librarian</h5>
+                <form action="http://127.0.0.1:8000/loginl" method="post">
+                    <div class="part">
+                        <label for="">Your email address</label><br>
+                        <input type="email" placeholder="Enter your email address" required name="lemail">
+                    </div>
+                    <div class="part">
+                        <label for="">Password</label><br>
+                        <input id="passr" type="password" placeholder="Password" required name="lpass">
+                        <span><i id="pass-eyer" class="fa-regular fa-eye"></i></span>
+                        <span><i id="pass-sl-eyer" class="fa-regular fa-eye-slash"></i></span>
+                        {% if error %}
+                            <h6 style="color:red">{{error}}</h6>
+                        {% endif %}
+                    </div>
+
+                    <div class="btn">
+                        <a herf="/loginl"><button class="signupbtn" herf="/loginl">Login</button></a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="rightSide">
+        <div class="overlay">
+
+
+        </div>
+    </div>
+    </div>
+    </div>
+    <script type="text/javascript" src="mainjs/main.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#stubtn").click(function () {
+                $("#student").show();
+                $("#Libarian").hide();
+                $(this).css("background-color", "rgb(141, 158, 255)");
+                $(this).css("color", "white");
+                $("#libbtn").css("color", "black");
+                $("#libbtn").css("background-color", "white");
+            });
+            $("#libbtn").click(function () {
+                $("#Libarian").show();
+                $("#student").hide();
+                $(this).css("background-color", "rgb(141, 158, 255)");
+                $(this).css("color", "white");
+                $("#stubtn").css("color", "black");
+                $("#stubtn").css("background-color", "white");
+            });
+            //password show hide        
+            $("#pass-eye").click(function () {
+                $(this).css("display", "none");
+                $("#pass-sl-eye").css("display", "block");
+                $("#pass").attr("type", ("password"));
+            });
+            $("#pass-sl-eye").click(function () {
+                $(this).css("display", "none");
+                $("#pass-eye").css("display", "block");
+                $("#pass").attr("type", ("text"));
+            });
+             //confirm password show hide        
+             $("#pass-eyer").click(function () {
+                $(this).css("display", "none");
+                $("#pass-sl-eyer").css("display", "block");
+                $("#passr").attr("type", ("password"));
+            });
+            $("#pass-sl-eyer").click(function () {
+                $(this).css("display", "none");
+                $("#pass-eyer").css("display", "block");
+                $("#passr").attr("type", ("text"));
+            });
+        });
+    </script>
+</body>
+
+</html>
